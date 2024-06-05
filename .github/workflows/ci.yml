@@ -32,6 +32,6 @@ jobs:
         if: ${{ matrix.os == 'windows-latest'}}
         shell: pwsh
         run: |
-          ./$(poetry env info --path)/Scripts/activate.ps1
+          ./.venv/Scripts/activate.ps1
           ruff check mcci_api
           pytest .
