@@ -10,18 +10,19 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-      - name: Install Python
-        uses: actions/setup-python@v5
-        with:
-            python-version: 3.12
-            cache: poetry
       - name: Install and configure poetry
         run: |
           pipx install poetry
           poetry config virtualenvs.create true --local
           poetry config virtualenvs.in-project true --local
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+            python-version: 3.12
+            cache: poetry
       - name: Install the project dependencies
         run: poetry install --only main,dev
       - name: Lint and run tests
         run: |
           ruff lint
+          pytest .
