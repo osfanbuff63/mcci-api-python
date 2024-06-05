@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mcci-api"
-version = "24.05.06"
+version = "24.05.06+v1.0"
 description = "Unofficial Python bindings to the MCC Island API."
 authors = ["osfanbuff63 <91388253+osfanbuff63@users.noreply.github.com>"]
 license = "MIT"
