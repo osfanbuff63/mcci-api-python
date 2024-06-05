@@ -5,6 +5,7 @@ description = "Unofficial Python bindings to the MCC Island API."
 authors = ["osfanbuff63 <91388253+osfanbuff63@users.noreply.github.com>"]
 license = "MIT"
 readme = "README.md"
+repository = "https://github.com/osfanbuff63/mcci-api-python"
 
 [tool.poetry.dependencies]
 python = "^3.12"
