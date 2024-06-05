@@ -25,5 +25,5 @@ jobs:
       - name: Lint and run test
         run: |
           source $(poetry env info --path)/bin/activate
-          ruff lint
+          ruff check mcci_api
           pytest .
