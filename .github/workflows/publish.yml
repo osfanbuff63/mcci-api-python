@@ -1,0 +1,53 @@
+on:
+  push:
+    tags:
+      - 'v*'
+jobs:
+  test-and-build:
+    name: Run tests and build
+    strategy:
+      matrix:
+        os: [ubuntu-22.04, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+            python-version: 3.12
+            cache: poetry
+        # see details (matrix, python-version, python-version-file, etc.)
+        # https://github.com/actions/setup-python
+      - name: Install and configure poetry
+        run: |
+          pipx install poetry
+          poetry config virtualenvs.create true --local
+          poetry config virtualenvs.in-project true --local
+      - name: Install the project dependencies
+        run: poetry install --only main,dev
+      - name: Run tests
+        run: pytest .
+      - name: Build wheel
+        if: ${{ matrix.os == 'ubuntu-22.04'}}
+        run: poetry build
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        if: ${{ matrix.os == 'ubuntu-22.04'}}
+        with:
+          name: built-wheel-linux
+          path: dist/*
+
+  publish:
+    name: Upload release to PyPI
+    runs-on: ubuntu-22.04
+    environment:
+      name: pypi
+      url: https://pypi.org/p/<your-pypi-project-name>
+    permissions:
+      id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
+    steps:
+    # retrieve your distributions here
+
+    - name: Publish package distributions to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1

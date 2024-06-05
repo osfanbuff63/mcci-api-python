@@ -1,0 +1,16 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: mcci-api-python
+Upstream-Contact: osfanbuff63 <osfanbuff63@osfanbuff63.tech>
+Source: https://mcci.osfanbuff63.tech
+
+Files: mcci_api/*
+Copyright: 2024 osfanbuff63 osfanbuff63@osfanbuff63.tech
+License: MIT
+
+# Files: docs/*
+# Copyright: 2024 osfanbuff63 osfanbuff63@osfanbuff63.tech
+# License: CC-BY-4.0
+
+Files: examples/*
+Copyright: 2024 osfanbuff63 osfanbuff63@osfanbuff63.tech
+License: CC0-1.0

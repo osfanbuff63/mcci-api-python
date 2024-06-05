@@ -1,0 +1,27 @@
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  test-and-build:
+    name: Run tests and build
+    strategy:
+      matrix:
+        os: [ubuntu-22.04, macos-latest, windows-latest]
+    if: ${{ github.event_name != 'pull_request' || github.repository != github.event.pull_request.head.repo.full_name }}
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+            python-version: 3.12
+            cache: poetry
+      - name: Install and configure poetry
+        run: |
+          pipx install poetry
+          poetry config virtualenvs.create true --local
+          poetry config virtualenvs.in-project true --local
+      - name: Install the project dependencies
+        run: poetry install --only main,dev
+      - name: Lint and run tests
+        run: |
+          ruff lint
