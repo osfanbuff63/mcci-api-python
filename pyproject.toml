@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mcci-api"
-version = "24.05.06.dev1"
+version = "24.5.7"
 description = "Unofficial Python bindings to the MCC Island API."
 authors = ["osfanbuff63 <91388253+osfanbuff63@users.noreply.github.com>"]
 license = "MIT"
@@ -15,7 +15,7 @@ mypy = "^1.10.0"
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.4.3"
 pytest = "^8.2.2"
-pytest-asyncio = "^0.23.7"
+pytest-asyncio = "^0.24.0"
 
 # [tool.poetry.group.docs.dependencies]
 # mkdocs = "^1.6.0"
